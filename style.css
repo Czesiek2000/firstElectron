@@ -1,0 +1,103 @@
+body {
+    background-color: #767676;
+}
+
+.title  {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    color: #ffffff;
+    font-size: 40px;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: -20px;
+    margin-top: 60px;
+    width: 90%;
+}
+
+.boxes  {
+    width: 200px;
+    height: 200px;
+}
+
+.box-desc {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.box-title {
+    margin-left: 50px;
+}
+
+.new-desc {
+    margin-left: 20px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.disk-image {
+    background-color: transparent;
+    
+}
+
+.usage {
+    width: 100px;
+    margin-left: 30px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 40px;
+
+}
+
+.border-dev {
+    border: 1px solid #000000;
+}
+
+.description {
+    font-size: 30px;
+    color: #000000;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.mem-usage {
+    margin-left: 40px;
+    color: lightgreen;
+    font-size: 40px;
+}
+
+.memUsage {
+    margin-left: 40px;
+    margin-top: 100px;
+    color: green;
+    /* font-size: 40px; */
+}
+
+.margin {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.next{
+   height: 120px;
+   width: 100px;
+}
+
+.next:hover {
+    transform: scale(2);
+}
+
+.arrow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

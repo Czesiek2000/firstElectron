@@ -1,0 +1,18 @@
+{
+  "name": "firstElectron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev:electron-main": "cross-env NODE_ENV='development' electron -r babel-register ./app/renderer/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^3.0.5",
+    "electron-reload": "^1.2.5",
+    "os-utils": "0.0.14"
+  }
+}

@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* background-color:; */
+}
+
+.root {
+    background-color: #333333;
+    height: 60px;
+    width: 100vw;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.container  {
+    padding-top: 20px;
+}
+
+.archInfo {
+    padding-top: 20px;
+}
+
+.args {
+    margin-left: 20px;
+}
+
+.next{
+    height: 120px;
+    width: 100px;
+    background: transparent;
+ }
+ 
+ .arrow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+ }
