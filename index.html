@@ -5,42 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Electron app</title>
+    <title>System Usage</title>
 </head>
 <body>
-    <h1 class="title">Hello World! </h1>
+    <h1 class="title">System Usage</h1>
     <!-- <div id="root"></div> -->
 
     <div class="box">
         <div class="boxes">
-            <div class="cpu border-dev" id="cpu">
-                <img src="cpu.png" alt="cpu" class="image">
-                <h3 class="box-title">Cpu usage</h3>
-                <p class="box-desc"> CPu usage show in %<span class="new-desc"> refresh in real time </span></p>
-                <div class="usage"></div>
+            <div class="cpu" id="cpu">
+                <img src="img/cpu.png" alt="cpu" class="image">
+                <h3 class="box-title">CPU usage</h3>
             </div>
         </div>
 
         <div class="boxes">
-            <div class="mem border-dev" id="mem">
-                <img src="memory.png" alt="memory" class="image">
+            <div class="mem" id="mem">
+                <img src="img/memory.png" alt="memory" class="image">
                 <h3 class="box-title">Mem Usage</h3>
-                <p class="box-desc">Mem usage show in GB <br> <span class="new-desc">refresh in real time</span></p>
             </div>
         </div>
 
         <div class="boxes">
-            <div class="disk border-dev" id="disk">
-                <img src="hard-disk.png" alt="disk" class="disk-image image">
+            <div class="disk" id="disk">
+                <img src="img/hard-disk.png" alt="disk" class="disk-image image">
                 <h3 class="box-title">Disk Usage</h3>
-                <p class="box-desc">Disk usage <br><span class="new-desc">refresh in real time</span></p>
             </div>
         </div>
     </div>
 
 
     <div class="arrow">
-        <a href="info.html" id="next"><img src="arrow.jpg" alt="arrow" class="next"></a>
+        <a href="info.html" id="next"><img src="img/arrow.jpg" alt="arrow" class="next"></a>
     </div>
 
 

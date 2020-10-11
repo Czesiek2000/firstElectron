@@ -50,12 +50,13 @@ body {
 }
 
 .usage {
-    width: 100px;
+    width: 110px;
     margin-left: 30px;
     text-align: center;
     color: #ffffff;
     font-size: 40px;
-
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .border-dev {
@@ -63,10 +64,10 @@ body {
 }
 
 .description {
-    font-size: 30px;
-    color: #000000;
+    /* font-size: 30px; */
+    color: #ffffff;
     margin-left: 50px;
-    margin-top: 40px;
+    /* margin-bottm: 40px; */
 }
 
 .mem-usage {
@@ -93,11 +94,16 @@ body {
 }
 
 .next:hover {
-    transform: scale(2);
+    /* transform: scale(2); */
 }
 
 .arrow {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.cpu-title {
+    color: #ffffff;
+    text-align: center;
 }

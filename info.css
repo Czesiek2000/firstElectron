@@ -32,10 +32,10 @@ body {
     height: 120px;
     width: 100px;
     background: transparent;
- }
+}
  
- .arrow {
+.arrow {
     position: absolute;
     bottom: 0;
     left: 0;
- }
+}
