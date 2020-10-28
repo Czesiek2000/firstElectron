@@ -1,5 +1,7 @@
 body {
     background-color: #767676;
+    margin-right: 30px;
+    overflow-x: hidden;
 }
 
 .title  {
@@ -106,4 +108,9 @@ body {
 .cpu-title {
     color: #ffffff;
     text-align: center;
+}
+
+.disk-usage{ 
+    color: #ffffff;
+    width: 300px;
 }

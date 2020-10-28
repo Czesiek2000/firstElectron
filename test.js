@@ -61,3 +61,28 @@ mem.appendChild(value)
 setInterval(function() {
     value.innerHTML = ((os.freemem()) / 1000).toFixed(1) + ' GB';
 }, 1000);
+
+const disk = document.getElementById('disk');
+const diskValue = document.createElement('div');
+diskValue.classList.add('disk-usage');
+cp.exec('wmic logicaldisk get size, freespace, caption', (error, stdout)=>{
+    // let drives = stdout.trim().split('\r\r\n')
+    //   .map(value => value.trim().split(/\s/))
+    //   .slice(1)
+    console.log((127357939712 * 0.000000001).toFixed(0));
+    let drives = stdout.split(/[ ,]+/);
+    drives.pop();
+    let d = "";
+    let index = 0;
+    for (let i = 0; i < drives.length; i++) {
+        if (!isNaN(drives[i])) {
+            d += `${parseInt(drives[i] * 0.000000001).toFixed(0) } GB \t`;
+        }else {
+            d += `${drives[i].replace(/([a-z])([A-Z])/g, '$1 $2')}\t`
+        }
+        
+    }
+    
+    diskValue.innerText = d ;
+});
+disk.appendChild(diskValue);
