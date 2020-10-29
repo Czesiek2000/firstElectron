@@ -95,10 +95,6 @@ body {
    width: 100px;
 }
 
-.next:hover {
-    /* transform: scale(2); */
-}
-
 .arrow {
     position: absolute;
     bottom: 0;

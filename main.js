@@ -25,30 +25,11 @@ function createWindow() {
     height: 800,
     // frame: false
   })
-  win.loadFile('index.html')
+  win.loadFile('html/index.html')
 
   win.on('closed', () => {
     win = null
   })
-
-// Create info modal
-function openModal() {
-  // Create new window
-  modal = new BrowserWindow({
-    width: 400,
-    height: 250,
-    title: 'About project',
-    modal: true
-  })
-
-  // Load html to modal
-  modal.loadFile('about.html');
-
-  // Destroy modal
-  modal.on('close', () => {
-    modal = null;
-  })
-}
 
   // Menu
   const menu = Menu.buildFromTemplate(template);
@@ -112,9 +93,23 @@ const template = [
       {
         label: 'More about',
         click() {
-          openModal();
+          // Create info modal
+          modal = new BrowserWindow({
+            width: 400,
+            height: 250,
+            title: 'About project',
+            modal: true
+          })
+
+          // Load html to modal
+          modal.loadFile('html/about.html');
+
+          // Destroy modal
+          modal.on('close', () => {
+            modal = null;
+          })
         }
-      }
+        }
     ]
   }
   ];
