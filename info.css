@@ -5,37 +5,35 @@
 }
 
 body {
-    /* background-color:; */
+    background-color: #767676;
+    color: #ffffff;
 }
 
-.root {
-    background-color: #333333;
-    height: 60px;
-    width: 100vw;
-    margin-top: 20px;
-    margin-bottom: 100px;
+.title {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 40px;
 }
 
-.container  {
-    padding-top: 20px;
+.container {
+    text-align: center;
+    font-size: 20px;
 }
 
-.archInfo {
-    padding-top: 20px;
-}
-
-.args {
-    margin-left: 20px;
+.container p {
+    padding-bottom: 10px;
 }
 
 .next{
-    height: 120px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     background: transparent;
 }
  
 .arrow {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 30px;
+    left: 20px;
+    transform: rotate(180deg);
 }

@@ -1,52 +1,105 @@
 const os = require('os');
+const cp = require('child_process');
 
-// root element store in variable
-let root = document.getElementById('root');
-let arch = document.getElementById('arch');
-let info = document.getElementById('info');
-let version = document.getElementById('version');
-console.log(root);
-root.classList.add('root');
+const container = document.querySelector('.container');
 
-var cpuInfo = os.cpus();
-console.log(cpuInfo);
-console.log(cpuInfo[1].model);
+const cpu = os.cpus();
 
-root.innerHTML = cpuInfo[1].model;
+// cpu model
+const model = cpu[0].model;
 
-var archInfo = os.arch();
-console.log(arch);
-archInfoVal = `<h4>Arch version: ` + archInfo + `</h4>`;
-console.log(archInfoVal);
-arch.innerText = archInfoVal;
+// cpu speed 
+const speed = cpu[0].speed;
 
-var PcInfo = [];
-PcInfo.push(os.info);
-PcInfo.push(os.platform);
+// arch version
+const arch = os.arch();
 
-console.log(PcInfo);
-var versionInfo = `<h3>Chrome version: ` + 
-process.versions.chrome + `</h3>`+ `<h3> Electron Version: ` + process.versions.electron + `</h3>` 
-+ `<h3>V8 Engine: ` + process.versions.v8 +`</h3>` + `<h3> Node Version: ` + process.versions.node + `</h3>`;
-version.innerHTML = versionInfo;
-console.log(versionInfo);
-console.log(version);
-// var memInfo = os.mem;
-// console.log(mem);
+// homedir
+const home = os.homedir();
 
-// console.log(os.cpus());
-// console.log(os.arch());
-// console.log(os.totalmem());
-// console.log("Total memory avaible: " + (bytesAvailable / 1048576) + " MB");
-// console.log(os.type());
-// console.log(os.platform());
+// host name
+const host = os.hostname();
 
+// platform
+const platform = os.platform();
 
-console.log(process);
-args = process.argv
-let argsList = document.getElementById('args');
-argsList.innerHTML = args[0];
-for (let i = 0; i < args.length; i++) {
-    const element = args[i];
-    console.log(element);
+// release
+const release = os.release();
+
+// total mem
+let totalmem = os.totalmem();
+totalmem = `${(totalmem * 0.000000001).toFixed(2)} GB`
+// console.log();
+
+// free mem
+let freemem = os.freemem();
+freemem = `${(freemem * 0.000000001).toFixed(2)} GB`
+// console.log();
+
+// type
+const type = os.type();
+
+// uptime
+const uptime = os.uptime();
+
+// username
+const username = os.userInfo().username;
+
+// Template to display on screen
+let output = "";
+output += `<p>Model: ${model}</p>
+<p>Speed: ${speed} GHz</p>
+<p>Arch version: ${arch}</p>
+<p>Platform: ${platform}</p>
+<p>Release: ${release}</p>
+<p>Total mem: ${totalmem}</p>
+<p>Freemem: ${freemem}</p>
+<p>System: ${type}</p>
+<p>Home: ${home}</p>
+<p>PC name: ${host}</p>
+<p>Username: ${username}</p>
+`
+
+// Change value of uptime to day, hour, minute, second
+function convert(ms) {
+    let d, h, m, s;
+    s = Math.floor(ms / 1000);
+    m = Math.floor(s / 60);
+    s = s % 60;
+    h = Math.floor(m / 60);
+    m = m % 60;
+    d = Math.floor(h / 24);
+    h = h % 24;
+    return {
+        d: d,
+        h: h,
+        m: m,
+        s: s
+    };
+};
+
+// Add computer uptime to template
+let value = "";
+value += `${convert(uptime).d} : ${convert(uptime).h} : ${convert(uptime).m} : ${convert(uptime).s}`;
+output += `<p>Uptime: ${value}</p>`;
+
+if (os.platform() === "win32") {
+    cp.exec("wmic path win32_VideoController get name", (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        container.innerHTML += `<p>Graphics: ${stdout.substr(4, stdout.length)}</p>`
+    })    
+    
+}else {
+    output += `<p>Graphics undefined implemented for Windows 10</p>`
 }
+
+
+// Display template on screen
+container.innerHTML = output;
