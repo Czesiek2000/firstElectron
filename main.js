@@ -1,9 +1,13 @@
 'use strict';
 const electron = require('electron');
-const {app, BrowserWindow, Menu} = require('electron');
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  shell
+} = require('electron');
 const url = require('url');
 const path = require('path');
-const operativeSystemModule = require('os');
 const os = require('os');
 
 // Need to be delete before post to github
@@ -13,6 +17,7 @@ require('electron-reload')(__dirname, {
 
 
 let win;
+let modal;
 
 function createWindow() {
   win = new BrowserWindow({
@@ -21,62 +26,98 @@ function createWindow() {
     // frame: false
   })
   win.loadFile('index.html')
-  // Open devTools
-  win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null
-  } )
+  })
+
+// Create info modal
+function openModal() {
+  // Create new window
+  modal = new BrowserWindow({
+    width: 400,
+    height: 250,
+    title: 'About project',
+    modal: true
+  })
+
+  // Load html to modal
+  modal.loadFile('about.html');
+
+  // Destroy modal
+  modal.on('close', () => {
+    modal = null;
+  })
+}
 
   // Menu
-  const menu = Menu.buildFromTemplate ([
-    {
-      label: 'Options',
-      submenu: [
-        {role: 'reload'},
-        {role: 'toggledevtools'},
-        {role: 'togglefullscreen'},
-        {
-          label: 'Exit',
-          click(){
-            console.log('clicked exit');
-            app.quit();
-          }
+  const menu = Menu.buildFromTemplate(template);
+
+  Menu.setApplicationMenu(menu);
+
+}
+
+const template = [
+  {
+    label: 'Options',
+    submenu: [
+      {
+        role: 'reload'
+      },
+      {
+        role: 'togglefullscreen'
+      },
+      {
+        label: 'Exit',
+        click() {
+          console.log('clicked exit');
+          app.quit();
         }
-      ]
-    },
-    {
-      label: 'Menu',
-      submenu: [
-        {label: 'Main Paige',
-          click() {
-            win.loadFile('index.html')
+      }
+    ]
+  },
+  {
+    label: 'Menu',
+    submenu: [{
+        label: 'Main Paige',
+        click() {
+          win.loadFile('index.html')
         }
-        },
-        {
-          label: 'Process',
-          click(){
-            console.log('clicked the submenu, process')
-          }
-        },
-        {role: 'close'},
-      ]
-    },
-    {
-      label: 'Info',
-      submenu: [{
+      },
+      {
+        label: 'Process',
+        click() {
+          console.log('clicked the submenu, process')
+        }
+      },
+      {
+        role: 'close'
+      },
+    ]
+  },
+  {
+    label: 'Info',
+    submenu: [{
         label: 'Info page',
         click() {
           win.loadFile('info.html')
         }
       },
-      {label: 'Github repo'},
-      {label: 'More about project'}
+      {
+        label: 'Github repo',
+        click() {
+          shell.openExternal('https://github.com/Czesiek2000/firstElectron');
+        }
+      },
+      {
+        label: 'More about',
+        click() {
+          openModal();
+        }
+      }
     ]
-    }
-  ])
-  Menu.setApplicationMenu(menu);
-}
+  }
+  ];
 
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
@@ -90,3 +131,16 @@ app.on('active', () => {
     createWindow()
   }
 })
+
+if(process.env.NODE_ENV !== 'production'){
+  template[0].submenu.unshift(
+    {
+      role: 'toggledevtools',
+      accelerator:process.platform == 'darwin' ? 'Command+I' : 'F12',
+      click(item, focusedWindow){
+        focusedWindow.toggleDevTools();
+      } 
+    }
+  );
+
+}
